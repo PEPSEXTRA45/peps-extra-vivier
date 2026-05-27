@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic RH — PEP's EXTRA</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --vert:    #003E49;
+  --vert-l:  #E6F0F2;
+  --rouge:   #AE1832;
+  --rouge-l: #FDEAEA;
+  --or:      #B58210;
+  --or-l:    #FFF3D6;
+  --blanc:   #ffffff;
+  --fond:    #F5F2ED;
+  --texte:   #1A1A1A;
+  --gris:    #6B6B6B;
+  --border:  #E0DDD8;
+  --green:   #1A7A4A;
+  --green-l: #E6F5ED;
+  --orange:  #D4650A;
+  --orange-l:#FFF0E5;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--fond);
+  color: var(--texte);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--vert);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--or);
+  letter-spacing: 0.04em;
+}
+
+.header-logo span {
+  color: rgba(255,255,255,0.6);
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 120px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--or);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+/* ── ÉCRANS ── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ── INTRO ── */
+.intro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--or-l);
+  border: 1px solid var(--or);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--or);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.intro-title {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 800;
+  color: var(--vert);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.intro-title em {
+  font-style: normal;
+  color: var(--rouge);
+}
+
+.intro-sub {
+  font-size: 15px;
+  color: var(--gris);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.story-card {
+  background: var(--blanc);
+  border-left: 4px solid var(--vert);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+}
+
+.story-card p {
+  font-size: 13px;
+  color: var(--vert);
+  line-height: 1.6;
+}
+
+.story-card strong { font-weight: 700; }
+.story-card .rouge { color: var(--rouge); font-weight: 700; }
+
+.promise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.promise-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--texte);
+  font-weight: 500;
+}
+
+.check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--vert);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 11px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--vert-l);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vert);
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--rouge);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover { background: #8e1228; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  width: 100%;
+  background: var(--vert);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover { background: #002a33; }
+
+/* ── QUESTION ── */
+.q-card {
+  background: var(--blanc);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+  margin-bottom: 16px;
+}
+
+.q-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--or);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.q-text {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--vert);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.q-hint {
+  font-size: 12px;
+  color: var(--gris);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--blanc);
+  text-align: left;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.option:hover {
+  border-color: var(--vert);
+  background: var(--vert-l);
+}
+
+.option.selected {
+  border-color: var(--vert);
+  background: var(--vert-l);
+}
+
+.option-letter {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--fond);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--vert);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.option.selected .option-letter {
+  background: var(--vert);
+  color: white;
+}
+
+.option-text {
+  font-size: 14px;
+  color: var(--texte);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-next {
+  flex: 1;
+  background: var(--vert);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn-next.ready {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.btn-next.ready:hover { background: #002a33; }
+
+.btn-prev {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--gris);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-prev:hover { border-color: var(--vert); color: var(--vert); }
+
+/* ── CAPTURE FORM ── */
+.capture-card {
+  background: var(--blanc);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+  border-top: 4px solid var(--or);
+}
+
+.capture-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--vert);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.capture-sub {
+  font-size: 13px;
+  color: var(--gris);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.capture-sub strong { color: var(--rouge); }
+
+.form-group { margin-bottom: 14px; }
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texte);
+  margin-bottom: 5px;
+}
+
+.req { color: var(--rouge); }
+
+input, select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--texte);
+  background: white;
+  transition: border-color 0.2s;
+  appearance: none;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--vert);
+}
+
+input::placeholder { color: #ccc; }
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+.lock-mention {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--vert-l);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 16px 0;
+  font-size: 11px;
+  color: var(--vert);
+  line-height: 1.4;
+}
+
+.lock-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── RÉSULTAT ── */
+.result-header {
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-header.rouge { background: var(--rouge); }
+.result-header.orange { background: #D4650A; }
+.result-header.vert { background: var(--green); }
+
+.result-deco {
+  position: absolute;
+  right: -20px; top: -20px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+
+.result-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.result-icon { font-size: 40px; margin-bottom: 8px; display: block; }
+
+.result-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.result-score {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+/* Analyse détaillée */
+.analysis-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.analysis-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--vert);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analysis-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.analysis-item:last-child { border-bottom: none; }
+
+.analysis-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.dot-rouge { background: var(--rouge); }
+.dot-orange { background: var(--orange); }
+.dot-vert { background: var(--green); }
+
+/* Recommandation */
+.reco-card {
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.reco-card.rouge { background: var(--rouge-l); border-left: 4px solid var(--rouge); }
+.reco-card.orange { background: var(--orange-l); border-left: 4px solid var(--orange); }
+.reco-card.vert { background: var(--green-l); border-left: 4px solid var(--green); }
+
+.reco-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.reco-card.rouge .reco-title { color: var(--rouge); }
+.reco-card.orange .reco-title { color: var(--orange); }
+.reco-card.vert .reco-title { color: var(--green); }
+
+.reco-text {
+  font-size: 13px;
+  color: var(--texte);
+  line-height: 1.6;
+}
+
+/* CTA résultat */
+.cta-result {
+  background: var(--vert);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.cta-result-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.cta-result-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.cta-result-btn {
+  display: block;
+  background: var(--rouge);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.cta-result-btn:hover { background: #8e1228; }
+
+.garantie-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.garantie-item {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Urgence */
+.urgence-band {
+  background: var(--rouge);
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* Transition */
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mention {
+  text-align: center;
+  font-size: 10px;
+  color: #bbb;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">PEP'S EXTRA <span>Diagnostic RH</span></div>
+  <div class="progress-wrap">
+    <span class="progress-label" id="prog-label">0 / 7</span>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══ ÉCRAN 0 : INTRO ═══ -->
+<div class="screen active fade-in" id="screen-intro">
+  <div class="intro-badge">⏱ 3 minutes · Résultat immédiat</div>
+  <h1 class="intro-title">Votre établissement<br>est-il <em>vraiment protégé</em><br>contre la galère RH ?</h1>
+  <p class="intro-sub">Répondez à 7 questions. Recevez votre diagnostic personnalisé — et découvrez combien vous coûte vraiment votre situation actuelle.</p>
+
+  <div class="story-card">
+    <p><strong>Samedi 23 mai 2026 · 06h37.</strong> Un traiteur du 18, sur la route vers le 45, perd sa serveuse par SMS. 15 min avant le départ.<br><br>
+    <span class="rouge">09h08 — Mission résolue.</span> Extra trouvé, briefé, confirmé. En 2h31. Un vrai humain. Un samedi matin.<br><br>
+    Et vous — si ça vous arrivait demain matin, que se passerait-il ?</p>
+  </div>
+
+  <div class="promise-list">
+    <div class="promise-item"><div class="check">✓</div>7 questions · 3 minutes chrono</div>
+    <div class="promise-item"><div class="check">✓</div>Diagnostic personnalisé Rouge / Orange / Vert</div>
+    <div class="promise-item"><div class="check">✓</div>Résultat immédiat à l'écran + analyse par email</div>
+    <div class="promise-item"><div class="check">✓</div>100% gratuit · Aucun engagement</div>
+  </div>
+
+  <button class="btn-primary" onclick="startDiag()">Je fais mon diagnostic →</button>
+</div>
+
+<!-- ═══ ÉCRANS QUESTIONS 1-7 ═══ -->
+<div class="screen fade-in" id="screen-questions"></div>
+
+<!-- ═══ ÉCRAN CAPTURE ═══ -->
+<div class="screen fade-in" id="screen-capture">
+  <div class="capture-card">
+    <div class="capture-title">Votre diagnostic est prêt !</div>
+    <div class="capture-sub">Laissez vos coordonnées pour accéder à votre résultat.<br><strong>Votre score vous attend — il pourrait vous surprendre.</strong></div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Prénom <span class="req">*</span></label>
+        <input type="text" id="f-prenom" placeholder="Jean" required>
+      </div>
+      <div class="form-group">
+        <label>Nom <span class="req">*</span></label>
+        <input type="text" id="f-nom" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email professionnel <span class="req">*</span></label>
+      <input type="email" id="f-email" placeholder="jean@monrestaurant.fr" required>
+    </div>
+    <div class="form-group">
+      <label>Téléphone <span class="req">*</span></label>
+      <input type="tel" id="f-tel" placeholder="06 12 34 56 78" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Ville <span class="req">*</span></label>
+        <input type="text" id="f-ville" placeholder="Orléans">
+      </div>
+      <div class="form-group">
+        <label>Type d'établissement <span class="req">*</span></label>
+        <select id="f-type">
+          <option value="" disabled selected>Choisissez…</option>
+          <option>Restaurateur</option>
+          <option>Traiteur</option>
+          <option>Hôtelier</option>
+          <option>Organisateur événementiel</option>
+          <option>Autre</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="lock-mention">
+      <span class="lock-icon">🔒</span>
+      <span>Vos données sont confidentielles. Aucune revente. Béatrice vous contacte sous 24h avec votre analyse complète.</span>
+    </div>
+
+    <button class="btn-primary" onclick="showResult()">Voir mon diagnostic →</button>
+    <div class="mention">En soumettant, vous acceptez d'être recontacté par PEP's EXTRA.</div>
+  </div>
+</div>
+
+<!-- ═══ ÉCRAN RÉSULTAT ═══ -->
+<div class="screen fade-in" id="screen-result"></div>
+
+</div><!-- /main -->
+
+<script>
+// ── DONNÉES QUESTIONS ──
+const questions = [
+  {
+    q: "Combien de fois avez-vous manqué de personnel lors d'un service ces 3 derniers mois ?",
+    hint: "Désistements, absences, no-shows inclus",
+    options: [
+      { text: "Jamais — mon équipe est fiable", score: 0 },
+      { text: "1 à 2 fois — quelques galères ponctuelles", score: 1 },
+      { text: "3 à 5 fois — c'est récurrent", score: 2 },
+      { text: "Plus de 5 fois — c'est mon quotidien", score: 3 }
+    ]
+  },
+  {
+    q: "Que faites-vous quand un collaborateur vous lâche en urgence (moins de 24h) ?",
+    hint: "Soyez honnête — c'est pour votre diagnostic",
+    options: [
+      { text: "J'ai un vivier d'extras prêts à intervenir", score: 0 },
+      { text: "J'appelle mes contacts — ça marche parfois", score: 1 },
+      { text: "Je cherche sur les réseaux / annonces", score: 2 },
+      { text: "Je gère seul ou j'annule le service", score: 3 }
+    ]
+  },
+  {
+    q: "Combien de temps perdez-vous à chercher du renfort RH chaque semaine ?",
+    hint: "Appels, messages, annonces, relances…",
+    options: [
+      { text: "Moins de 30 minutes — c'est organisé", score: 0 },
+      { text: "30 min à 1h — c'est gérable", score: 1 },
+      { text: "1h à 3h — c'est trop", score: 2 },
+      { text: "Plus de 3h — ça empiète sur mon travail", score: 3 }
+    ]
+  },
+  {
+    q: "Avez-vous déjà dû fermer ou réduire un service faute de personnel ?",
+    hint: "Service annulé, menu réduit, salle fermée…",
+    options: [
+      { text: "Non, jamais", score: 0 },
+      { text: "Oui, une ou deux fois", score: 1 },
+      { text: "Oui, plusieurs fois cette année", score: 2 },
+      { text: "Oui, c'est arrivé récemment", score: 3 }
+    ]
+  },
+  {
+    q: "Comment gérez-vous vos pics d'activité (week-ends, événements, saison haute) ?",
+    hint: "Mariages, réceptions, fêtes, été…",
+    options: [
+      { text: "J'ai une liste d'extras prêts et disponibles", score: 0 },
+      { text: "Je fais appel à une agence — c'est cher mais ça marche", score: 1 },
+      { text: "Je démultiplie les appels en espérant trouver", score: 2 },
+      { text: "Je surcharge mon équipe fixe — mal vécu", score: 3 }
+    ]
+  },
+  {
+    q: "Avez-vous déjà calculé le coût réel d'un service annulé ou dégradé ?",
+    hint: "CA perdu + image + stress + temps passé",
+    options: [
+      { text: "Oui — et j'ai mis des solutions en place", score: 0 },
+      { text: "J'ai une idée vague mais jamais calculé précisément", score: 1 },
+      { text: "Non — je préfère ne pas y penser", score: 2 },
+      { text: "Non — mais je sais que c'est important", score: 3 }
+    ]
+  },
+  {
+    q: "Si une solution vous garantissait un extra disponible en moins de 4h, même le week-end — seriez-vous prêt(e) à la tester ?",
+    hint: "Satisfait ou recrédité — zéro risque",
+    options: [
+      { text: "Oui, immédiatement — j'en ai besoin maintenant", score: 3 },
+      { text: "Oui, pourquoi pas — je veux en savoir plus", score: 2 },
+      { text: "Peut-être — ça dépend du prix", score: 1 },
+      { text: "Non — j'ai déjà ma solution", score: 0 }
+    ]
+  }
+];
+
+let answers = new Array(7).fill(null);
+let currentQ = 0;
+let totalScore = 0;
+let userName = '';
+
+function updateProgress(q) {
+  const pct = Math.round((q / 7) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = q + ' / 7';
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.classList.remove('fade-in');
+  void el.offsetWidth;
+  el.classList.add('fade-in');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startDiag() {
+  currentQ = 0;
+  renderQuestion(0);
+  showScreen('screen-questions');
+  updateProgress(0);
+}
+
+function renderQuestion(idx) {
+  const q = questions[idx];
+  const letters = ['A', 'B', 'C', 'D'];
+  const sel = answers[idx];
+
+  let html = `
+    <div class="q-card">
+      <div class="q-num">Question ${idx + 1} sur 7</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-hint">${q.hint}</div>
+      <div class="options">
+        ${q.options.map((o, i) => `
+          <button class="option ${sel === i ? 'selected' : ''}"
+            onclick="selectOption(${idx}, ${i}, this)">
+            <span class="option-letter">${letters[i]}</span>
+            <span class="option-text">${o.text}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+    <div class="nav-row">
+      ${idx > 0 ? `<button class="btn-prev" onclick="goBack()">←</button>` : '<div></div>'}
+      <button class="btn-next ${sel !== null ? 'ready' : ''}" id="btn-next" onclick="nextQuestion()">
+        ${idx < 6 ? 'Question suivante →' : 'Voir mon résultat →'}
+      </button>
+    </div>`;
+
+  document.getElementById('screen-questions').innerHTML = html;
+  updateProgress(idx);
+}
+
+function selectOption(qIdx, optIdx, el) {
+  answers[qIdx] = optIdx;
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  const btn = document.getElementById('btn-next');
+  if (btn) btn.classList.add('ready');
+}
+
+function goBack() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion(currentQ);
+  }
+}
+
+function nextQuestion() {
+  if (answers[currentQ] === null) return;
+  if (currentQ < 6) {
+    currentQ++;
+    renderQuestion(currentQ);
+  } else {
+    showScreen('screen-capture');
+    updateProgress(7);
+  }
+}
+
+async function showResult() {
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const nom    = document.getElementById('f-nom').value.trim();
+  const email  = document.getElementById('f-email').value.trim();
+  const tel    = document.getElementById('f-tel').value.trim();
+  const ville  = document.getElementById('f-ville').value.trim();
+  const type   = document.getElementById('f-type').value;
+
+  if (!prenom || !nom || !email || !tel || !type) {
+    alert('Merci de remplir tous les champs obligatoires.');
+    return;
+  }
+
+  // Calcul score avant envoi
+  totalScore = 0;
+  for (let i = 0; i < 7; i++) {
+    if (answers[i] !== null) {
+      totalScore += questions[i].options[answers[i]].score;
+    }
+  }
+  const pctPreview = Math.round((totalScore / 21) * 100);
+  const niveauPreview = pctPreview >= 60 ? 'SITUATION CRITIQUE 🔴' : pctPreview >= 30 ? 'SITUATION À RISQUE 🟠' : 'BONNE GESTION RH 🟢';
+
+  // Envoi Formspree (non bloquant)
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xredrlzy';
+  try {
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        prenom, nom, email, telephone: tel, ville, type_etablissement: type,
+        score: pctPreview + '/100',
+        niveau: niveauPreview,
+        reponses: answers.map((a, i) => a !== null ? questions[i].options[a].text : 'Non répondu').join(' | '),
+        source: 'Diagnostic RH PEPS EXTRA'
+      })
+    });
+  } catch(e) { /* silencieux — ne bloque pas le résultat */ }
+
+  userName = prenom;
+
+  // Score max = 21 — on ramène sur 100
+  totalScore = 0;
+  for (let i = 0; i < 7; i++) {
+    if (answers[i] !== null) {
+      totalScore += questions[i].options[answers[i]].score;
+    }
+  }
+
+  // Score max = 18 (6×3) + 3 (q7) = 21 — on ramène sur 100
+  const pct = Math.round((totalScore / 21) * 100);
+
+  let niveau, couleur, icon, titre, sousTitre, analyse, reco, ctaText;
+
+  if (pct >= 60) {
+    niveau = 'SITUATION CRITIQUE';
+    couleur = 'rouge';
+    icon = '🔴';
+    titre = `${prenom}, votre établissement est en zone de danger RH`;
+    sousTitre = `Score de vulnérabilité : ${pct}/100 — Vous perdez probablement du CA chaque semaine`;
+    analyse = [
+      { dot: 'rouge', text: 'Vous êtes régulièrement exposé(e) à des désistements de dernière minute sans solution fiable.' },
+      { dot: 'rouge', text: 'Chaque service dégradé représente entre 500€ et 3 000€ de CA perdu selon votre volume.' },
+      { dot: 'rouge', text: 'Votre image auprès des clients est impactée à chaque incident RH non géré.' },
+      { dot: 'orange', text: 'Vous passez un temps précieux à chercher du renfort qui devrait être dédié à votre clientèle.' }
+    ];
+    reco = `${prenom}, votre situation nécessite une action immédiate. Chaque semaine sans solution vous coûte du chiffre d'affaires, de l'énergie et de la réputation. PEPs EXTRA vous garantit un extra disponible en moins de 4h, même le week-end — avec 1 urgence offerte pour tester dès maintenant.`;
+    ctaText = '🚨 Je veux une solution maintenant →';
+  } else if (pct >= 30) {
+    niveau = 'SITUATION À RISQUE';
+    couleur = 'orange';
+    icon = '🟠';
+    titre = `${prenom}, vous gérez — mais vous êtes vulnérable`;
+    sousTitre = `Score de vulnérabilité : ${pct}/100 — Un imprévu peut tout faire basculer`;
+    analyse = [
+      { dot: 'orange', text: 'Vous vous en sortez, mais votre système repose sur des solutions de fortune qui peuvent lâcher.' },
+      { dot: 'orange', text: 'La prochaine urgence inattendue vous trouvera sans filet de sécurité.' },
+      { dot: 'vert', text: 'Vous avez conscience du problème — c\'est déjà un avantage sur 80% de vos pairs.' },
+      { dot: 'vert', text: 'Quelques ajustements suffiraient à sécuriser vos prochaines saisons.' }
+    ];
+    reco = `${prenom}, vous êtes à un imprévu d'une situation critique. Mettre en place un vivier d'extras géolocalisés maintenant, avant la saison haute, vous évitera de chercher en urgence quand tout le monde est déjà pris.`;
+    ctaText = '⚡ Je sécurise mon équipe maintenant →';
+  } else {
+    niveau = 'BONNE GESTION RH';
+    couleur = 'vert';
+    icon = '🟢';
+    titre = `${prenom}, vous gérez bien votre RH — continuez ainsi`;
+    sousTitre = `Score de vulnérabilité : ${pct}/100 — Vous faites partie des 20% qui ont anticipé`;
+    analyse = [
+      { dot: 'vert', text: 'Vous avez su mettre en place des solutions pour anticiper les aléas RH.' },
+      { dot: 'vert', text: 'Votre équipe est globalement fiable et vos processus sont rodés.' },
+      { dot: 'orange', text: 'Attention : même les meilleures organisations peuvent être surprises en haute saison.' },
+      { dot: 'vert', text: 'PEPs EXTRA peut compléter votre dispositif pour les pics et les urgences imprévues.' }
+    ];
+    reco = `${prenom}, bravo — vous faites partie des pros qui ont anticipé. Pour aller encore plus loin, PEPs EXTRA vous permet d'accéder à un vivier d'extras géolocalisés pour couvrir vos pics de saison sans surcharger votre équipe fixe.`;
+    ctaText = '✅ Découvrir PEPs EXTRA →';
+  }
+
+  const analyseHTML = analyse.map(a => `
+    <div class="analysis-item">
+      <span class="analysis-dot dot-${a.dot}"></span>
+      <span>${a.text}</span>
+    </div>`).join('');
+
+  const html = `
+    ${pct >= 60 ? `<div class="urgence-band">⚠️ Action recommandée dans les 48h — Ne laissez pas la prochaine urgence vous surprendre</div>` : ''}
+
+    <div class="result-header ${couleur}">
+      <div class="result-deco"></div>
+      <div class="result-badge">Diagnostic PEP's EXTRA</div>
+      <span class="result-icon">${icon}</span>
+      <div class="result-title">${niveau}</div>
+      <div class="result-score">${sousTitre}</div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="analysis-title">📊 Ce que révèle votre diagnostic</div>
+      ${analyseHTML}
+    </div>
+
+    <div class="reco-card ${couleur}">
+      <div class="reco-title">Notre recommandation pour vous</div>
+      <div class="reco-text">${reco}</div>
+    </div>
+
+    <div class="cta-result">
+      <div class="cta-result-title">Prochaine étape</div>
+      <div class="cta-result-sub">Béatrice vous rappelle personnellement sous 24h<br>avec votre analyse complète par email</div>
+      <a href="https://tally.so/r/eqYkok" target="_blank" class="cta-result-btn">${ctaText}</a>
+      <div class="garantie-row">
+        <span class="garantie-item">✓ Satisfait ou recrédité</span>
+        <span class="garantie-item">✓ 1 urgence offerte</span>
+        <span class="garantie-item">✓ Réponse 7j/7</span>
+      </div>
+    </div>
+
+    <div class="mention">
+      Résultat envoyé également par email · PEP's EXTRA · peps-extra.com<br>
+      Zones : Centre-Val de Loire · Normandie · Bordeaux · IDF · PACA
+    </div>`;
+
+  document.getElementById('screen-result').innerHTML = html;
+  showScreen('screen-result');
+  updateProgress(7);
+}
+</script>
+
+</body>
+</html>
