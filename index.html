@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEP's EXTRA — Votre équipe en 1 clic, même en dernière minute</title>
+<!-- Open Graph / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pepsextra45.github.io/peps-extra-vivier">
+<meta property="og:title" content="PEP'S EXTRA — Votre extra en moins de 4h, même le week-end">
+<meta property="og:description" content="Samedi 06h37, SOS d'un traiteur. 09h08, mission résolue. Extras géolocalisés · Réponse humaine 7j/7 · Satisfait ou recrédité. Accédez au vivier maintenant.">
+<meta property="og:image" content="https://pepsextra45.github.io/peps-extra-vivier/preview.jpg">
+<meta name="description" content="Extras géolocalisés pour restaurateurs, traiteurs et hôteliers. Réponse humaine 7j/7 · Satisfait ou recrédité · Zones : CVL, Normandie, Bordeaux, IDF, PACA.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --vert:    #003E49;
+    --rouge:   #AE1832;
+    --or:      #B58210;
+    --clair:   #f5f2ed;
+    --blanc:   #ffffff;
+    --texte:   #1a1a1a;
+    --gris:    #6b6b6b;
+    --border:  #ddd9d3;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--clair);
+    color: var(--texte);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--vert);
+    padding: 52px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(181,130,16,0.12);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(174,24,50,0.10);
+  }
+
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--or);
+  }
+
+  .logo-badge span {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--or);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Preuve sociale hero */
+  .proof-strip {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .proof-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+
+  .proof-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--or);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--vert);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* ── TEASER STORY ── */
+  .story-band {
+    background: var(--rouge);
+    padding: 16px 24px;
+    text-align: center;
+  }
+
+  .story-band p {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .story-band strong {
+    font-weight: 700;
+  }
+
+  /* ── CONTENU PRINCIPAL ── */
+  .main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Bloc SOS */
+  .sos-card {
+    background: var(--blanc);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+    margin-bottom: 36px;
+  }
+
+  .sos-header {
+    background: var(--vert);
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sos-header span {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .sos-badge {
+    background: var(--rouge);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .sos-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sms-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .bubble {
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 82%;
+  }
+
+  .bubble.in {
+    background: #ececec;
+    color: #1a1a1a;
+    border-bottom-left-radius: 3px;
+    align-self: flex-start;
+  }
+
+  .bubble.out {
+    background: var(--vert);
+    color: #fff;
+    border-bottom-right-radius: 3px;
+    align-self: flex-end;
+  }
+
+  .ts {
+    font-size: 10px;
+    color: #aaa;
+    font-weight: 500;
+  }
+
+  .ts.right { text-align: right; }
+
+  .result-row {
+    margin-top: 6px;
+    background: #f0f7f5;
+    border-left: 3px solid var(--vert);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--vert);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* ── BÉNÉFICES ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 14px;
+  }
+
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .benefit-item {
+    background: var(--blanc);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  }
+
+  .benefit-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--vert);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .benefit-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texte);
+    margin-bottom: 2px;
+  }
+
+  .benefit-text span {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.4;
+  }
+
+  /* ── ZONES ── */
+  .zones-block {
+    background: #fff8ee;
+    border: 1.5px solid var(--or);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 36px;
+  }
+
+  .zones-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--vert);
+    margin-bottom: 10px;
+  }
+
+  .zones-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .zone-pill {
+    background: var(--vert);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  /* ── FORMULAIRE ── */
+  .form-card {
+    background: var(--blanc);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    border-top: 4px solid var(--rouge);
+  }
+
+  .form-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--vert);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .form-sub {
+    font-size: 13px;
+    color: var(--gris);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texte);
+    margin-bottom: 6px;
+  }
+
+  label .required {
+    color: var(--rouge);
+    margin-left: 2px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--texte);
+    background: #fff;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--vert);
+  }
+
+  input::placeholder { color: #bbb; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* Garantie */
+  .garantie {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f0f7f5;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 20px 0;
+  }
+
+  .garantie-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .garantie-text {
+    font-size: 12px;
+    color: var(--vert);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .garantie-text strong { font-weight: 700; }
+
+  /* Bouton submit */
+  .btn-submit {
+    width: 100%;
+    background: var(--rouge);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-submit:hover { background: #8e1228; transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  .form-mention {
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── CONFIRMATION (cachée par défaut) ── */
+  .confirm-screen {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .confirm-screen.visible { display: block; }
+
+  .confirm-icon {
+    font-size: 52px;
+    margin-bottom: 16px;
+  }
+
+  .confirm-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--vert);
+    margin-bottom: 10px;
+  }
+
+  .confirm-text {
+    font-size: 14px;
+    color: var(--gris);
+    line-height: 1.6;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  footer strong { color: var(--vert); }
+
+  /* ── GUIDE TALLY (instructions) ── */
+  .tally-guide {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+
+  .tally-guide-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 14px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--vert);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-content strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texte);
+    margin-bottom: 3px;
+  }
+
+  .step-content span {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.4;
+  }
+
+  .step-content code {
+    background: #f0ede8;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--vert);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="logo-badge">
+    <div class="logo-dot"></div>
+    <span>PEP's EXTRA</span>
+  </div>
+  <h1>Votre équipe en <em>1 clic</em><br>même en dernière minute</h1>
+  <p class="hero-sub">Accédez au vivier d'extras géolocalisés, disponibles 7j/7 — même le samedi à 6h37.</p>
+  <div class="proof-strip">
+    <div class="proof-item"><div class="proof-icon">✓</div>Réponse humaine 7j/7</div>
+    <div class="proof-item"><div class="proof-icon">✓</div>Extra trouvé en moins de 4h</div>
+    <div class="proof-item"><div class="proof-icon">✓</div>Satisfait ou recrédité</div>
+  </div>
+</div>
+
+<!-- STORY BAND -->
+<div class="story-band">
+  <p>Samedi 23 mai 2026, 06h37 — Un traiteur du 18, en route vers le 45, perd sa serveuse par SMS. <strong>Mission résolue à 09h08.</strong></p>
+</div>
+
+<!-- CONTENU -->
+<div class="main">
+
+  <!-- SOS CARD -->
+  <div class="sos-card">
+    <div class="sos-header">
+      <span>Samedi 23 mai 2026 · 06:37 → 09:08</span>
+      <span class="sos-badge">Cas réel</span>
+    </div>
+    <div class="sos-body">
+      <div class="sms-row">
+        <div class="ts">Samedi 23 mai · 06:37</div>
+        <div class="bubble in">Bonjour Béatrice, ceci est un 🆘<br>À tout hasard tu ne connaîtrais pas quelqu'un pour un service ce midi à Augerville-la-Rivière dans le 45 ? La serveuse m'a lâché 15 min avant le départ.<br>Merci — Stéphane</div>
+      </div>
+      <div class="sms-row">
+        <div class="bubble out">Je prends une heure plus adaptée pour appuyer avec un appel. C'est à côté de chez moi mais je suis déjà en dépannage jusqu'à 22h</div>
+      </div>
+      <div class="sms-row">
+        <div class="bubble in">Merci beaucoup</div>
+      </div>
+      <div class="sms-row">
+        <div class="ts right">Samedi 23 mai · 09:08</div>
+        <div class="bubble out">Trouvé ! Stéphane (c son prénom) est aussi cuisinier (polyvalent service)</div>
+      </div>
+      <div class="sms-row">
+        <div class="bubble in">Au moins je ne vais pas me tromper. Super. Un énorme merci Béatrice 🙏</div>
+      </div>
+      <div class="result-row">⚡ SOS 6h37 → Extra trouvé, confirmé, briefé à 9h08 · 2h31 · Un vrai humain · Un samedi matin</div>
+    </div>
+  </div>
+
+  <!-- BÉNÉFICES -->
+  <div class="section-label">Ce que vous obtenez</div>
+  <div class="benefits">
+    <div class="benefit-item">
+      <div class="benefit-icon">⚡</div>
+      <div class="benefit-text">
+        <strong>Réponse humaine 7j/7 — même en urgence</strong>
+        <span>Pas un bot. Béatrice ou son équipe décroche, même le samedi à l'aube. 1 urgence offerte en Freemium, illimitées en abonnement.</span>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">📍</div>
+      <div class="benefit-text">
+        <strong>Extras géolocalisés dans votre zone</strong>
+        <span>Le vivier est local. Même si vous intervenez hors de votre département, on trouve un extra sur place.</span>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🛡️</div>
+      <div class="benefit-text">
+        <strong>Satisfait ou recrédité — zéro risque</strong>
+        <span>Si la prestation ne convient pas, vos crédits sont remboursés. Vous ne payez que ce qui fonctionne.</span>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">📋</div>
+      <div class="benefit-text">
+        <strong>DPAE et contrats — option à 29€ HT</strong>
+        <span>Gestion de la DPAE et des contrats de travail en option. Bulletins de salaire non inclus. Vous vous concentrez sur votre service.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZONES -->
+  <div class="zones-block">
+    <div class="zones-title">Zones couvertes actuellement</div>
+    <div class="zones-list">
+      <span class="zone-pill">Centre-Val de Loire</span>
+      <span class="zone-pill">Normandie</span>
+      <span class="zone-pill">Bordeaux</span>
+      <span class="zone-pill">Île-de-France</span>
+      <span class="zone-pill">PACA</span>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-card" id="form-wrapper">
+    <div class="form-title">Accédez au vivier maintenant</div>
+    <div class="form-sub">Laissez vos coordonnées — Béatrice vous rappelle personnellement sous 24h.</div>
+
+    <iframe data-tally-src="https://tally.so/embed/eqYkok?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Accès vivier PEP's EXTRA"></iframe>
+    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')===null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+    <div class="garantie">
+      <div class="garantie-icon">🔒</div>
+      <div class="garantie-text"><strong>Vos données restent privées.</strong> Aucune revente, aucun démarchage tiers. Vous recevez le Guide Anti-Galère RH + un rappel de Béatrice sous 24h.</div>
+    </div>
+    <div class="form-mention">En soumettant ce formulaire, vous acceptez d'être recontacté par PEP's EXTRA.<br>Désinscription possible à tout moment.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>PEP's EXTRA</strong> · Votre équipe en 1 clic · Ligny-le-Ribault · peps-extra.com<br>
+  Zones couvertes : Centre-Val de Loire · Normandie · Bordeaux · IDF · PACA
+</footer>
+
+<!-- GUIDE TALLY -->
+<div class="tally-guide">
+  <div class="tally-guide-title">Guide de mise en place sur Tally.so</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Créer le compte Tally</strong>
+        <span>Allez sur <code>tally.so</code> → Créer un compte gratuit avec l'email PEP's EXTRA. Le plan gratuit permet jusqu'à 100 soumissions/mois.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Créer le formulaire avec ces 6 champs</strong>
+        <span><code>Prénom</code> · <code>Nom</code> · <code>Email</code> · <code>Téléphone</code> · <code>Ville/CP</code> · <code>Type d'établissement</code> (liste) · <code>Nb missions/mois</code> (liste)</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Configurer la réponse automatique</strong>
+        <span>Dans Tally → Integrations → Email : envoyer automatiquement l'email J0 avec le lien du Guide PDF. Objet : <code>"Votre guide + accès vivier PEP's EXTRA"</code></span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Connecter à Brevo (ex-Sendinblue)</strong>
+        <span>Tally → Integrations → Brevo : chaque soumission ajoute le contact dans la liste <code>"Leads CHR"</code> et déclenche la séquence des 3 emails automatiquement.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <strong>Copier le lien du formulaire</strong>
+        <span>Tally génère un lien court type <code>tally.so/r/XXXXXX</code> → c'est ce lien que vous mettez en 1er commentaire de votre post LinkedIn.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <strong>Notification temps réel à Béatrice</strong>
+        <span>Tally → Notifications : chaque nouveau lead envoie un email + SMS à Béatrice avec toutes les infos du prospect pour le rappel sous 24h.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('capture-form').style.display = 'none';
+  document.getElementById('confirm').classList.add('visible');
+  window.scrollTo({ top: document.getElementById('form-wrapper').offsetTop - 20, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
